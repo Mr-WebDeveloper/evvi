@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import background from '../assets/images/background6.png'
 import Header from './Header';
+// import Footer from './Footer';
 
 function Dashboard() {
 
@@ -19,9 +20,9 @@ function Dashboard() {
 
     return (
         <>
-            <Header name={"login"} path={"/login"} />  
+            <Header name={"login"} path={"/login"} icon={"bi bi-box-arrow-in-right"} />  
 
-            <div className='pt-lg-5'>
+            <div className='pt-lg-5 '>
                 <div className='p-5 d-flex justify-content-center'>
                     <div className='bg-dark text-light rounded-3 shadow col-5 dashboard'>
                         <h1 className='p-4'>YOUR HR PARTNER IN.</h1>

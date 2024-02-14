@@ -5,6 +5,9 @@ const PrivateRoute = ({ Component }) => {
 
     const [isAuthenticated, setIsAuthenticated] = useState(true);
 
+    // const handleAuth = () => {
+    //     setIsAuthenticated(true);
+    // }
 
     return isAuthenticated ? <Component /> : <Navigate to="/login" />;
 };

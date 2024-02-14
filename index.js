@@ -2,9 +2,17 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import multer from 'multer';
 import { MongoClient } from 'mongodb';
+import cors from 'cors';
 
 const client = new MongoClient('mongodb://localhost:27017');
 
+const app = express();
+const port = 5000;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use(cors());
 
 client.connect()
     .then(() => {
@@ -13,7 +21,7 @@ client.connect()
     .catch(err => {
         console.error("Error connecting to MongoDB:", err);
     });
-
+    
 const database = client.db('Intern');
 const collection = database.collection('registerform');
 
@@ -28,11 +36,7 @@ var storage = multer.diskStorage({
 
 var uploads = multer({ storage: storage });  
 
-const app = express();
-const port = 4000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
 
 app.get("/", async (req, res) => {
 
@@ -46,24 +50,15 @@ app.get("/", async (req, res) => {
     }
 });
 
-// app.post("/register", uploads.single('document'), async (req, res) => {
-//     console.log("/Register");
-//     // console.log(req.file);
-//     const { path } = req.file;
-//     console.log(path);
-//     // res.send(req.document);
-//     // res.redirect(`http://localhost:3000/welcome?email=${email}`);
-// });
-
 app.post("/register", uploads.single('document'), async (req, res) => {
     console.log("/Register");
 
 
-    const { username, qualification, email, location, moreinfo, experience, phonenumber } = req.body;
+    const { username, email, mobilenumber, qualification, currentlocation, preferedlocation, experience, linkedin, personalsite, socialmedia, language, moreinfo } = req.body;
     
-    const { path } = req.file;
+    // const { path } = req.file;
     console.log(req.file);
-    console.log(path);
+    // console.log(path);
     
     // console.log(req.body);
     try {
@@ -73,29 +68,33 @@ app.post("/register", uploads.single('document'), async (req, res) => {
             {
                 $set: {
                     username,
-                    qualification,
                     email,
+                    mobilenumber,
+                    qualification,
+                    currentlocation,
+                    preferedlocation,
                     experience,
-                    location,
+                    linkedin,
+                    personalsite,
+                    socialmedia,
+                    language,
                     moreinfo,
-                    path,
-                    phonenumber
+                    // path,
                 }
             });
 
         if (result !== null) {
-
             console.log("email found");
-            
 
             console.log("Data...Store");
-            res.redirect(`http://localhost:3000/welcome?${email}`);
+            return res.status(201).send({ message: "User Found" });
+            // res.redirect(`http://localhost:3000/welcome`);
             // console.log("Finally....");
         }
         else {
             console.log("email not foud");
-            res.status(404).send({ message: "User not Found" });
-            res.redirect("http://localhost:3000/");
+            return res.status(404).send({ message: "User not Found" });
+            // res.redirect("http://localhost:3000/");
         }
         
     } catch (err) {
@@ -106,12 +105,17 @@ app.post("/register", uploads.single('document'), async (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
-    const { email, password, confirmpassword, mobilenumber } = req.body;
 
-    if (password === confirmpassword) {
+    console.log("signup");
+
+    const { email, password, mobilenumber } = req.body;
+
+    console.log(req.body);
+
         try {
 
             const result = await collection.insertOne({
+                // username,
                 email,
                 password,
                 mobilenumber
@@ -121,26 +125,24 @@ app.post("/signup", async (req, res) => {
 
             if(acknowledged)
             {
-                res.redirect("http://localhost:3000/login");
+                res.status(201).send(email);
             }
             else{
-                res.redirect("http://localhost:3000/");
+                res.status(250).send({message:"Error Occured...Data Not Store"});
             }
 
-        } catch (error) {
+        } 
+        catch (error) {
             console.log("Error In : ",error);
         }
-    }
-    else {
-        res.redirect("http://localhost:3000/");
-        res.status(404).send({ message: "password and confirm password should be same" });
-    }
+    
+   
 });
 
-app.get("/login", async (req, res) => {
-    console.log(req.query);
+app.post("/login", async (req, res) => {
+    console.log(req.body);
 
-    const { email, password } = req.query;
+    const { email, password } = req.body;
 
     console.log(email, password);
 
@@ -151,26 +153,38 @@ app.get("/login", async (req, res) => {
         if (result !== null) {
             
             console.log("email found");
-            res.redirect(`http://localhost:3000/welcome?email=${email}`);
-            // res.status(201).send({ userEmail: email });
+            res.status(201).send({ userEmail: email });
+            // res.redirect(`http://localhost:3000/welcome?email=${email}`);
         }
         else {
             console.log("email not foud");
-            res.redirect("http://localhost:3000/");
+            res.status(250).send({ userEmail: email });
+            // res.redirect("http://localhost:3000/");
         }
-        res.redirect("http://localhost:3000/");
+        // res.redirect("http://localhost:3000/");
     } catch (error) {
-
+        console.log(error);
     }
 });
 
-// app.get('/welcome/', async (req, res) => {
+app.post('/welcome', async (req, res) => {
      
-//     let email = req.params.email;
+    // let {email, password} = req.body;
+    console.log("Welcome");
+    console.log(req.body);
+    let { email } = req.body;
 
-//     console.log(email);
+    try {
+        const result = await collection.findOne({ email });
+        // const {username, mobilenumber} = result;
 
-// })
+        console.log(result); 
+        res.json(result);
+    } catch (error) {
+        console.log(error)
+    }
+
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}.`);

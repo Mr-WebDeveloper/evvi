@@ -83,9 +83,11 @@ function Signup() {
                 <div className="p-3 p-lg-5">
                     <div className="d-flex justify-content-center pb-5 pb-lg-1">
                         <div className="col-lg-4 col-12 col-md-6 rounded-4 d-flex justify-content-center" style={{ backgroundImage: `url(${background})`}}>
-                            <div className="py-5 px-lg-4 px-2" >
+                            <div className="py-5 px-lg-4 px-2 text-light" >
 
                                 <form encType="multipart/form-data" onSubmit={handleSignup} >
+                                    <h3>Sinup</h3>
+                                    <hr />
                                     {/* <div>
                                         <p className="text-light" >Enter Full Name :</p>
                                         <input type="text" className="form-control" id="username" name="username" value={formData.username} onChange={handleChange} />

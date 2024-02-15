@@ -7,14 +7,6 @@ import Header from "./Header";
 
 
 function Login(...props) {
-    // useEffect(() => {
-    //     document.body.style.backgroundImage = `url(${background})`;
-    //     document.body.style.backgroundSize = "cover";
-    //     return () => {
-    //         document.body.style.backgroundImage = 'none';
-    //     };
-    // }, []);
-
 
 
     const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-function SidePanel()
+function SidePanel({data})
 {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
@@ -12,10 +12,14 @@ function SidePanel()
     }
     
     const handleHome = () => {
-        navigate('/welcome');
+        navigate('/welcome',{
+            state: data
+        });
     }
     const handleReisterForm = () => {
-        navigate('/profile');
+        navigate('/profile',{
+            state: data
+        });
     }
 
     return(

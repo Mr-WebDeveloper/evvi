@@ -29,7 +29,6 @@ function Welcome()
         personalsite: '',
         socialmedia: '',
         language: '',
-        document: '',
         moreinfo: ''
     });
 
@@ -57,7 +56,6 @@ function Welcome()
                  personalsite: res.data.personalsite,
                  socialmedia: res.data.socialmedia,
                  language: res.data.language,
-                 document: res.data.document,
                  moreinfo: res.data.moreinfo
             }));
         
@@ -85,7 +83,7 @@ function Welcome()
 
             <div className="justify-content-around ">
                 <div className="">
-                     <SidePanel />
+                     <SidePanel data={formData} />
                 </div>
 
                 <div className="">

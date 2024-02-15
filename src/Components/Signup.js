@@ -82,7 +82,7 @@ function Signup() {
             <div className="contaier-fluid pb-lg-5 pb-2">
                 <div className="p-3 p-lg-5">
                     <div className="d-flex justify-content-center pb-5 pb-lg-1">
-                        <div className="col-lg-4 col-8 rounded-4 d-flex justify-content-center" style={{ backgroundImage: `url(${background})`}}>
+                        <div className="col-lg-4 col-12 col-md-6 rounded-4 d-flex justify-content-center" style={{ backgroundImage: `url(${background})`}}>
                             <div className="py-5 px-lg-4 px-2" >
 
                                 <form encType="multipart/form-data" onSubmit={handleSignup} >

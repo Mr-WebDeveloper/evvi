@@ -62,7 +62,7 @@ function Profile()
                 <div className="">
                     <SidePanel data={formData} />
                 </div>
-                <div className="pt-lg-3 p-2">
+                <div className="pt-lg-3 p-2 pb-3 pb-lg-4 mb-lg-5">
                     <div className="d-flex justify-content-center">
                         <div className="pt-lg-3 p-2 col-lg-8 col-10">
                             <div className="bg-light rounded-3 text-center shadow ">
@@ -73,52 +73,58 @@ function Profile()
                                                Fullname : {formData.username}
                                             </div>
 
-                                            <div className="d-lg-flex justify-content-around">
-                                                <div>
-                                                    <div>
-                                                    Email : {formData.email}
-                                                    </div>
-                                                    <div>
-                                                    Phonenumber : {formData.phonenumber}
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div>
-                                                    Current Location : {formData.currentlocation}
-                                                    </div>
-                                                    <div>
-                                                    Prefered Location : {formData.preferedlocation}
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div className="p-2 p-lg-4">
+                                                <div className="border border-light bg-light shadow rounded-4">
+                                                    <div className="p-lg-4 p-2">
+                                                        <div className="d-lg-flex justify-content-around">
+                                                            <div>
+                                                                <div className="p-2">
+                                                                    <b>Email ID :</b> {formData.email}
+                                                                </div>
+                                                                <div>
+                                                                    <b>Phonenumber : </b> {formData.phonenumber}
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div className="p-2">
+                                                                    <b>Current Location :</b> {formData.currentlocation}
+                                                                </div>
+                                                                <div>
+                                                                    <b>Prefered Location :</b> {formData.preferedlocation}
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-                                            <div className="p-4">
-                                                <div>
-                                                Qualification : {formData.qualification}
-                                                </div>
-                                                <div>
-                                                Experience : {formData.experience}
-                                                </div>
-                                            </div>
-                                            
-                                            <div className="d-lg-flex justify-content-around">
-                                                <div>
-                                                    <div>
-                                                    LinkedIn URL :  {formData.linkedin}
-                                                    </div>
-                                                    <div>
-                                                    Social Media : {formData.socialmedia}
-                                                    </div>
-                                                    <div>
-                                                    Personalsite : {formData.personalsite}
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div>
-                                                    Language Known : {formData.language}
-                                                    </div>
-                                                    <div>
-                                                    Additional Info : {formData.moreinfo}
+                                                        <div className="p-4">
+                                                            <div className="p-2">
+                                                                <b>Qualification :</b> {formData.qualification}
+                                                            </div>
+                                                            <div>
+                                                                <b>Experience :</b> {formData.experience}
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div className="d-lg-flex justify-content-around">
+                                                            <div>
+                                                                <div className="p-2">
+                                                                    <b>LinkedIn URL : </b> {formData.linkedin}
+                                                                </div>
+                                                                <div>
+                                                                    <b>Social Media URL :</b> {formData.socialmedia}
+                                                                </div>
+                                                                <div className="p-2">
+                                                                    <b>Personalsite URL :</b> {formData.personalsite}
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div className="p-2">
+                                                                    <b>Language Known :</b> {formData.language}
+                                                                </div>
+                                                                <div>
+                                                                    <b>Additional Info :</b> {formData.moreinfo}
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

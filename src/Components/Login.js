@@ -93,9 +93,9 @@ function Login(...props) {
 
             <Header name={"Home"} path={"/"} icon={'bi bi-house-door'} /> 
                 <div className="container-fluid pb-lg-5 pb-2">
-                    <div className="p-3 p-lg-5">
+                    <div className="p-2 p-lg-3 p-lg-5">
                     <div className="d-flex justify-content-center pb-5 pb-lg-1">
-                        <div className="col-lg-4 col-8  rounded-4 d-flex justify-content-center" style={{ backgroundImage: `url(${background})` }}>
+                        <div className="col-lg-4 col-12 col-md-6  rounded-4 d-flex justify-content-center" style={{ backgroundImage: `url(${background})` }}>
                             <div className="py-5 px-lg-4 px-2 text-light">
 
                                     <form encType="multipart/form-data" onSubmit={handleLogin}>

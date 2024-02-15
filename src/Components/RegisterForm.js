@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import Header from './Header';
 import background from '../assets/images/home.jpeg' 
-import SidePanel from './SidePanel';
+// import SidePanel from './SidePanel';
 
 // import emailjs from '@emailjs/browser';
 

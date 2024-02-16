@@ -41,6 +41,7 @@ function FormData() {
     const [detail1, setDetail1] = useState(false);
     const [detail2, setDetail2] = useState(false);
     const [detail3, setDetail3] = useState(false);
+    const [detail4, setDetail4] = useState(false);
     
 
     const [submit, setSubmit] = useState(true);
@@ -54,6 +55,7 @@ function FormData() {
                 setDetail(false);
                 setDetail1(true);
                 break;
+
             case 2:
                 setDetail1(false);
                 setDetail2(true);
@@ -62,6 +64,11 @@ function FormData() {
             case 3:
                 setDetail2(false);
                 setDetail3(true);
+                break;
+
+            case 4:
+                setDetail3(false);
+                setDetail4(true);
                 setSubmit(false);
                 break;
         };
@@ -181,31 +188,38 @@ function FormData() {
                                         {detail && 
                                             <div className='p-3 col-l-6'>
                                                 <p className='text-start pt-2'>Full Name : </p>
-                                                <input className="form-control" type='text' name='username' id='username' value={formData.username} onChange={handleChange} placeholder='eg: Arun Kumar' />
+                                                <input className="form-control" type='text' name='username' id='username' value={formData.username} onChange={handleChange} placeholder='eg: Arun Kumar' required />
 
-                                                {/* <p className='text-start pt-2'>Mail ID : </p>
+                                                <p className='text-start pt-2'>Mail ID : </p>
                                                 <input className="form-control" type='email' name='email' id='email' readonly="readonly" value={formData.email} onChange={handleChange} placeholder='eg: Yourmail@gmail.com' />
 
                                                 <p className='text-start pt-2'>mobilenumber : </p>
-                                                <input className="form-control" type='text' name='mobilenumber' id='mobilenumber' readonly="readonly" value={formData.mobilenumber} onChange={handleChange} placeholder='eg: 10-digit number' /> */}
+                                                <input className="form-control" type='text' name='mobilenumber' id='mobilenumber' readonly="readonly" value={formData.mobilenumber} onChange={handleChange} placeholder='eg: 10-digit number' />
 
-                                                <p className='text-start pt-2'>CurrentLocation : </p>
-                                                <input className="form-control" type='text' name='currentlocation' id='currentlocation' value={formData.currentlocation} onChange={handleChange} placeholder='eg: Madurai' />
-
-                                                <p className='text-start pt-2'>Preferecd Location : </p>
-                                                <input className="form-control" type='text' name='preferedlocation' id='preferedlocation' value={formData.preferedlocation} onChange={handleChange} placeholder='eg: Chennai' />
                                             </div> 
                                         }
 
-                                        {/* 2 */}
+  
                                         {detail1 && 
+                                            <div className='p-3 col-l-6'>
+                                                <p className='text-start pt-2'>CurrentLocation : </p>
+                                                <input className="form-control" type='text' name='currentlocation' id='currentlocation' value={formData.currentlocation} onChange={handleChange} placeholder='eg: Madurai' required />
+
+                                                <p className='text-start pt-2'>Preferecd Location : </p>
+                                                <input className="form-control" type='text' name='preferedlocation' id='preferedlocation' value={formData.preferedlocation} onChange={handleChange} placeholder='eg: Chennai' required />
+                                            </div>
+
+                                        }
+
+                                        {/* 2 */}
+                                        {detail2 && 
                                             <div className='p-3 col-l-6'>
 
                                                 <p className='text-start pt-2'>Qualification : </p>
-                                                <input className="form-control" type='text' name='qualification' id='qualification' value={formData.qualification} onChange={handleChange} placeholder='eg: B.E CSE' />
+                                                <input className="form-control" type='text' name='qualification' id='qualification' value={formData.qualification} onChange={handleChange} placeholder='eg: B.E CSE' required />
 
                                                 <p className='text-start pt-2'> Experience : </p>
-                                                <select name='experience' id='experience' className='form-select' onClick={handleChange}>
+                                                <select name='experience' id='experience' className='form-select' onClick={handleChange} required>
                                                     <option defaultValue={""}>-Select-</option>
                                                     <option value={"last_year_passout"}>Last Year Passout</option>
                                                     <option value={"1-2"} >1 - 2</option>
@@ -219,31 +233,31 @@ function FormData() {
                                         }
 
                                         {/* 3 */}
-                                        {detail2 && 
+                                        {detail3 && 
                                             <div className='p-3 col-l-6'>
                                                 <p className='text-start pt-2'>LinkedIn URL : </p>
-                                                <input className="form-control" type='text' name='linkedin' id='linkedin' value={formData.linkedin} onChange={handleChange} placeholder='eg: https://LinkedIn/.username.LinkedIn.com' />
+                                                <input className="form-control" type='text' name='linkedin' id='linkedin' value={formData.linkedin} onChange={handleChange} placeholder='eg: https://LinkedIn/.username.LinkedIn.com' required />
 
                                                 <p className='text-start pt-2'>Personal Website URL : </p>
-                                                <input className="form-control" type='text' name='personalsite' id='personalsite' value={formData.personalsite} onChange={handleChange} placeholder='eg: Your Personal Wesite If Any ' />
+                                                <input className="form-control" type='text' name='personalsite' id='personalsite' value={formData.personalsite} onChange={handleChange} placeholder='eg: Your Personal Wesite If Any ' required />
 
                                                 <p className='text-start pt-2'>Other Social Media URL : </p>
-                                                <input className="form-control" type='text' name='socialmedia' id='socialmedia' value={formData.socialmedia} onChange={handleChange} placeholder='eg: GeeksforGeeks, Leetcode' />
+                                                <input className="form-control" type='text' name='socialmedia' id='socialmedia' value={formData.socialmedia} onChange={handleChange} placeholder='eg: GeeksforGeeks, Leetcode' required />
 
                                             </div>
                                         }
 
                                         {/* 4 */}
-                                        {detail3 && 
+                                        {detail4 && 
                                             <div className='p-3 col-l-6'>
                                                 <p className='text-start pt-2'>Language Known : </p>
-                                                <input className="form-control" type='text' name='language' id='language' value={formData.language} onChange={handleChange} placeholder='eg: Tamil, English' />
+                                                <input className="form-control" type='text' name='language' id='language' value={formData.language} onChange={handleChange} placeholder='eg: Tamil, English' required />
 
                                                 <p className='text-start pt-2'> Attach Document <i className="bi bi-paperclip"></i> : </p>
-                                                <input className="form-control" type='file' name='document' id='document' placeholder='' accept='.doc, .pdf, .docx' />
+                                                <input className="form-control" type='file' name='document' id='document' placeholder='' accept='.doc, .pdf, .docx' required />
 
                                                 <p className='text-start pt-2'>How Fun You Are ? : </p>
-                                                <textarea id="moreinfo" name="moreinfo" rows="4" cols="25" value={formData.moreinfo} onChange={handleChange} placeholder='eg: Cover Letter' />
+                                                <textarea id="moreinfo" name="moreinfo" rows="4" cols="25" value={formData.moreinfo} onChange={handleChange} placeholder='eg: Cover Letter' required />
 
                                             </div>
                                         }

@@ -54,7 +54,9 @@ app.post("/register", uploads.single('document'), async (req, res) => {
     console.log("/Register");
 
 
-    const { username, email, mobilenumber, qualification, currentlocation, preferedlocation, experience, linkedin, personalsite, socialmedia, language, moreinfo } = req.body;
+    const { username, email, mobilenumber, qualification, yearofpassing, currentlocation,
+         preferedlocation, experience, orgname, projects, projectskills, projecturl, 
+         otherskills, linkedin, personalsite, socialmedia, language, moreinfo } = req.body;
     
     // const { path } = req.file;
     console.log(req.file);
@@ -70,15 +72,22 @@ app.post("/register", uploads.single('document'), async (req, res) => {
                     username,
                     email,
                     mobilenumber,
-                    qualification,
                     currentlocation,
                     preferedlocation,
+                    qualification,
+                    yearofpassing,
                     experience,
+                    orgname,
+                    projects,
+                    projectskills,
+                    projecturl,
+                    otherskills,
                     linkedin,
                     personalsite,
                     socialmedia,
                     language,
-                    moreinfo,
+                    // document,
+                    moreinfo
                     // path,
                 }
             });
@@ -115,7 +124,6 @@ app.post("/signup", async (req, res) => {
         try {
 
             const result = await collection.insertOne({
-                // username,
                 email,
                 password,
                 mobilenumber

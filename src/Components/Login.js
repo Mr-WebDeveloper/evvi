@@ -62,8 +62,7 @@ function Login(...props) {
             }
             else 
             {
-                alert("Not a Valid User..!");
-                navigate('/login');
+                alert("Enter Valid Credentials..!");
             }
             
             // await axios.post("http://localhost:5000/login", formData).then((res) => {
@@ -101,17 +100,19 @@ function Login(...props) {
                                     <form encType="multipart/form-data" onSubmit={handleLogin}>
                                         <h3>Login</h3>
                                         <hr />
-                                        <p>Email address</p>
-                                        <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} placeholder='eg: Yourmail@gmail.com' />
-                                        <div className="form-text pb-3 text-secondary">We'll never share your email with anyone else.</div>
-                                        <p>Password</p>
-                                        <input type="password" className="form-control" id="password" name="password" value={formData.password} onChange={handleChange} placeholder='Enter Your Password' />
-                                        <div className="form-text p-2 text-secondary">Your password must be at least 8 characters</div>
+                                        <div className="pt-3">
+                                            {/* <p>Email address</p> */}
+                                            <input type="email" className="text-light border border-0 border-bottom bg-transparent" autocomplete="off" id="email" name="email" value={formData.email} onChange={handleChange} placeholder='Enter Your Email' />
+                                            <div className="form-text p-3 pb-5 text-secondary">We'll never share your email with anyone else.</div>
+                                        </div>
+                                        {/* <p>Password</p> */}
+                                        <input type="password" className="text-light border border-0 border-bottom bg-transparent" id="password" name="password" value={formData.password} onChange={handleChange} placeholder='Enter Your Password' />
+                                        <div className="form-text p-3 text-secondary">Your password must be at least 8 characters</div>
 
-                                         <p className="text-light btn" onClick={signUp} href="">Sign Up</p>
+                                         <p className="text-light btn text-decoration-underline" onClick={signUp} href="">Sign Up</p>
 
                                         <div className="text-center pt-3">
-                                            <button type="submit" className="btn btn-warning rounded-pill">Submit</button>
+                                            <button type="submit" className="px-5 btn btn-warning rounded-pill">Submit</button>
                                         </div>
                                     </form>
                                 </div>

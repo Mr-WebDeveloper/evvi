@@ -24,7 +24,6 @@ function Signup() {
 
 
     const [formData, setFormData] = useState({
-        username: '',
         email: "",
         password: "",
         confirmpassword: "",
@@ -54,7 +53,7 @@ function Signup() {
                         const email = res.data;
                         console.log(res.data);
                         
-                        alert(`Welcome ${email}, SignUp Successfull, Reister to Continue`);
+                        alert(`Welcome ${email}, SignUp Successfull, Register to Continue`);
                         navigate('/registerform', {
                             state: formData
                         });
@@ -62,7 +61,12 @@ function Signup() {
                     else if(res.status === 250)
                     {
                         alert("Data Not Stored...SignUp Correctly");  
-                        navigate('/signup'); 
+                        setFormData({
+                            email: "",
+                            password: "",
+                            confirmpassword: "",
+                            mobilenumber: ""
+                        });
                     }
 
                 })
@@ -82,11 +86,11 @@ function Signup() {
             <div className="contaier-fluid pb-lg-5 pb-2">
                 <div className="p-3 p-lg-5">
                     <div className="d-flex justify-content-center pb-5 pb-lg-1">
-                        <div className="col-lg-4 col-12 col-md-6 rounded-4 d-flex justify-content-center" style={{ backgroundImage: `url(${background})`}}>
+                        <div className="col-lg-5 col-12 col-md-6 rounded-4 d-flex justify-content-center" style={{ backgroundImage: `url(${background})`}}>
                             <div className="py-5 px-lg-4 px-2 text-light" >
 
                                 <form encType="multipart/form-data" onSubmit={handleSignup} >
-                                    <h3>Sinup</h3>
+                                    <h3>SignUp</h3>
                                     <hr />
                                     {/* <div>
                                         <p className="text-light" >Enter Full Name :</p>
@@ -94,33 +98,33 @@ function Signup() {
                                         <div id="Name" className="form-text pb-3 text-secondary">Enter Your Full Name</div>
                                     </div> */}
 
-                                    <div>
-                                        <p className="text-light" >Email address</p>
-                                        <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange}  />
-                                        <div id="emailHelp" className="form-text pb-3 text-secondary">Enter Your Email ID</div>
+                                    <div className="pt-5">
+                                        {/* <p className="text-light" >Email address</p> */}
+                                        <input type="email" className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-11" autocomplete="off" id="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter Your Email"  />
+                                        <div id="emailHelp" className=" form-text pb-3 text-secondary">Email ID</div>
                                     </div>
-                                    <div className="d-lg-flex">
+                                    <div className="d-lg-flex pt-4">
                                         <div className="px-1">
-                                            <p className="text-light text-secondary" >Password</p>
-                                            <input type="password" className="form-control" id="password" name="password" value={formData.password} onChange={handleChange}  />
-                                            <div id="emailHelp" className="form-text pb-3 text-secondary">Enter Your Password</div>
+                                            {/* <p className="text-light text-secondary" >Password</p> */}
+                                            <input type="password" className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-10" id="password" name="password" value={formData.password} onChange={handleChange} placeholder="Enter Your Password"  />
+                                            <div id="emailHelp" className="form-text pb-3 text-secondary">Password</div>
                                         </div>
-                                        <div className="px-1">
-                                            <p className="text-light" >Confirm Password</p>
-                                            <input type="password" className="form-control" id="confirm_password" name="confirmpassword" value={formData.confirmpassword} onChange={handleChange}  />
-                                            <div id="emailHelp" className="form-text pb-3 text-secondary">Re-Type Password</div>
+                                        <div className="px-1 pt-4 pt-lg-0">
+                                            {/* <p className="text-light" >Confirm Password</p> */}
+                                            <input type="password" className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-10" id="confirm_password" name="confirmpassword" value={formData.confirmpassword} onChange={handleChange} placeholder="Re-Type Password" />
+                                            <div id="emailHelp" className="form-text pb-3 text-secondary">Confirm Password</div>
                                         </div>
                                     </div>
                                     {/* <div>
                                     </div> */}
-                                    <div>
-                                        <p className="text-light" >Mobile Number</p>
-                                        <input type="text" className="form-control" id="mobilenumber" maxLength={10} name="mobilenumber" value={formData.mobilenumber} onChange={handleChange}  />
-                                        <div id="emailHelp" className="form-text pb-3 text-secondary">10-Digit Mobile Number</div>
+                                    <div className="pt-4">
+                                        {/* <p className="text-light" >Mobile Number</p> */}
+                                        <input type="text" className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-11" id="mobilenumber" maxLength={10} name="mobilenumber" autocomplete="off" value={formData.mobilenumber} onChange={handleChange} placeholder="Enter Your Mobile Number" />
+                                        <div id="emailHelp" className="form-text pb-3 text-secondary">Mobile Number</div>
                                     </div>
                                     {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
                                     <div className="text-center pt-3">
-                                        <button type="submit" className="btn btn-warning rounded-pill px-4">Sigin</button>
+                                        <button type="submit" className="btn btn-warning rounded-pill px-4">SignUp</button>
                                     </div>
                                 </form>
                             </div>

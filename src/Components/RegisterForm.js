@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import Header from './Header';
 import background from '../assets/images/home.jpeg' 
-import Experience from './Experience';
 import InputForm from './InputForm';
 // import SidePanel from './SidePanel';
 
@@ -22,6 +21,8 @@ function FormData() {
         yearofpassing: '',
         experience: '',
         orgname: '',
+        designation: '',
+        cmpexperience:'',
         projects:'',
         projectskills:'',
         projecturl:'',
@@ -40,10 +41,10 @@ function FormData() {
     const location = useLocation();
     const data = location.state;
 
-    console.log("Register..");
-    console.log(data);
+    // console.log("Register..");
+    // console.log(data);
 
-    const [count, setCount] = useState(0);
+    // const [count, setCount] = useState(0);
     
     const [stage, setStage] = useState(1);
 
@@ -73,6 +74,7 @@ function FormData() {
             yearofpassing: data.yearofpassing,
             experience: data.experience,
             orgname: data.orgname,
+            cmpexperience: data.cmpexperience,
             projects: data.projects,
             projectskills: data.projectskills,
             projecturl: data.projecturl,
@@ -89,13 +91,11 @@ function FormData() {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
+        console.log("function Change")
+        console.log(value);
         if (name === 'experience' && value === 'fresher')
         {
             setExperience(1);
-        }
-        else
-        {
-            setExperience(2)
         }
         setFormData(prevState => ({
             ...prevState,
@@ -110,6 +110,10 @@ function FormData() {
         
         console.log("Handle Submit");
         console.log("Axios");
+        console.log(formData.document);
+        // output undefined
+        console.log("file details");
+
             axios.post("http://localhost:5000/register", formData).then((res) => {
                 console.log(res);
                 if(res.status === 201) {
@@ -133,22 +137,36 @@ function FormData() {
         //     from_email: formData.email,
         //     to_name: 'mudalamrajarajacholan1@gmail.com',
 
+        //     // name: formData.username,
+        //     // email: formData.email,
         //     name: formData.username,
-        //     qualification: formData.qualification,
         //     email: formData.email,
+        //     mobilenumber: formData.mobilenumber,
+        //     currentlocation: formData.currentlocation,
+        //     preferedlocation: formData.preferedlocation,
+        //     qualification: formData.qualification,
+        //     yearofpassing: formData.yearofpassing,
         //     experience: formData.experience,
-        //     location: formData.location,
-        //     moreinfo: formData.moreinfo,
+        //     orgname: formData.orgname,
+        //     cmpexperience: formData.cmpexperience,
+        //     projects: formData.projects,
+        //     projectskills: formData.projectskills,
+        //     projecturl: formData.projecturl,
+        //     otherskills: formData.otherskills,
+        //     linkedin: formData.linkedin,
+        //     personalsite: formData.personalsite,
+        //     socialmedia: formData.socialmedia,
+        //     language: formData.language,
         //     document: formData.document,
-        //     mobilenumber: formData.mobilenumber
+        //     moreinfo: formData.moreinfo
 
         // };
 
-        // const form = document.getElementById("userForm");
+        // // const form = document.getElementById("userForm");
 
             
 
-        // await emailjs.sendForm(serviceID, templateID, form, publicKey)
+        // await emailjs.sendForm(serviceID, templateID, templateParams)
         //     .then((response) => {
         //         console.log("email send successfully", response);
         //     })
@@ -181,41 +199,17 @@ function FormData() {
                                     <h3>Register Details</h3>
                                     <hr />
                                     <div className='d-lg-flex'>
-                                                
-                                        {/* <InputForm content={"Current Location"} identifier={"currentlocation"} formData={formData} onChangeData={handleChange} placeholder={"Enter Your Current Location"} /> */}
-
-
-
                                         {/* form sart  */}
 
                                         {/* 1 */}
                                         {stage === 1 &&
                                             <div className='p-3'>
 
-                                                {/* <div className='pt-3'>
-            
-                                                    <input className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-11" type='text' name='username' autoComplete='off' id='username' value={formData.username} onChange={handleChange} placeholder='Enter Your Full Name' required />
-                                                    <div id="nameHelp" className=" form-text pb-3 text-light">Name</div>
-                                                </div> */}
-
-                                                <InputForm content={"Name"} identifier={"username"} formData={formData} onChangeData={handleChange} placeholder={"Enter Your Full Name"} value={formData.username} />
-
-
-                                                {/* <div className='pt-4'>
-                                                    <input className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-11" type='email' name='email' id='email' readonly="readonly" value={formData.email} onChange={handleChange} placeholder='eg: Yourmail@gmail.com' />
-                                                    <div id="emailHelp" className=" form-text pb-3 text-light">Email ID</div>
-                                                </div> */}
+                                                <InputForm content={"Enter Name"} identifier={"username"} formData={formData} onchangeData={handleChange} placeholder={"Enter Your Full Name"} value={formData.username} />
                                                 
-                                                <InputForm content={"Email ID"} identifier={"email"} formData={formData} onChangeData={handleChange} placeholder={"Enter Your Mail ID"} value={formData.email} />
+                                                <InputForm content={"EnterEmail ID"} identifier={"email"} formData={formData} onchangeData={handleChange} placeholder={"Enter Your Mail ID"} value={formData.email} />
 
-                                                {/* <div className='pt-4'>
-                                                    <input className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-11" type='text' name='mobilenumber' id='mobilenumber' readonly="readonly" value={formData.mobilenumber} onChange={handleChange} placeholder='eg: 10-digit number' />
-                                                    <div id="emailHelp" className=" form-text pb-3 text-light">Phone Number</div>
-                                                </div> */}
-
-                                                <InputForm content={"Phone Number"} identifier={"mobilenumber"} formData={formData} onChangeData={handleChange} placeholder={"Enter Your Mobile Number"} value={formData.mobilenumber} />
-
-
+                                                <InputForm content={"Enter Phone Number"} identifier={"mobilenumber"} formData={formData} onchangeData={handleChange} placeholder={"Enter Your Mobile Number"} value={formData.mobilenumber} />
 
                                             </div> 
                                         }
@@ -224,12 +218,10 @@ function FormData() {
                                         {stage === 2 &&
                                             <div className='p-3'>
 
-                                                <InputForm content={"Current Location"} identifier={"currentlocation"} formData={formData} onChangeData={handleChange} placeholder={"Enter Your Current Location"} />
+                                                <InputForm content={"Current Location"} identifier={"currentlocation"} formData={formData} onchangeData={handleChange} placeholder={"Enter Your Current Location"} value={formData.currentlocation} />
 
-                                                <div className='pt-4'>
-                                                    <input className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-11" type='text' name='preferedlocation' id='preferedlocation' value={formData.preferedlocation} onChange={handleChange} placeholder='Enter Your Prefered Location' required />
-                                                    <div id="preferedLocation" className=" form-text pb-3 text-light">Prefered Location</div>
-                                                </div>
+                                                <InputForm content={"Prefered Location"} identifier={"preferedlocation"} formData={formData} onchangeData={handleChange} placeholder={"Enter Your Prefered Work Location"} value={formData.preferedlocation} />
+
                                             </div>
                                         }
 
@@ -237,18 +229,9 @@ function FormData() {
                                        {stage === 3 &&
                                             <div className='p-3'>
 
-                                                <div className='pt-4'>
-                                                    {/* <p className='text-start pt-2'>Qualification : </p> */}
-                                                    <input className="text-light border border-0 border-bottom bg-transparent col-12" type='text' name='qualification' id='qualification' value={formData.qualification} onChange={handleChange} placeholder='Enter Your Qualification' required />
-                                                    <div id="preferedLocation" className=" form-text pb-3 text-light">Qualification</div>
-                                                </div>
-
-                                                <div className='pt-4'>
-                                                    {/* <p className='text-start pt-2'>Qualification : </p> */}
-                                                    <input className="text-light border border-0 border-bottom bg-transparent col-12" type='text' name='yearofpassing' id='yearofpassing' value={formData.yearofpassing} onChange={handleChange} placeholder='Enter Year of Passing' required />
-                                                    <div id="preferedLocation" className=" form-text pb-3 text-light">Year of Passing</div>
-                                                </div>
-
+                                                <InputForm content={"Qualification"} identifier={"qualification"} formData={formData} onchangeData={handleChange} placeholder={"Enter Your Qualification"} value={formData.qualification} />
+                                                
+                                                <InputForm content={"Passout Year"} identifier={"yearofpassing"} formData={formData} onchangeData={handleChange} placeholder={"Enter Year of Passing"} value={formData.yearofpassing} />
 
                                                 <div className='pt-4'>
                                                     {/* <p className='text-start pt-2'> Experience : </p> */}
@@ -268,57 +251,34 @@ function FormData() {
 
 
                                         {stage === 4 &&
-                                            (experience === 1 &&
-                                                <Experience formData={formData} handleChange={handleChange} name={"College"} placeholder={"Enter Your College Name"} />
+                                            <div className='p-3'>
+                                                    {experience === 1 ?
+                                                    <InputForm content={"College Name"} identifier={"orgname"} formData={formData} onchangeData={handleChange} placeholder={"Enter Your College Name"} value={formData.orgname} />
+                                                    :
+                                                    <>
+                                                        <InputForm content={"Previous Company Name"} identifier={"orgname"} formData={formData} onchangeData={handleChange} placeholder={"Enter Your Organization Name"} value={formData.orgname} />
+                                                        <InputForm content={"Designation"} identifier={"designation"} formData={formData} onchangeData={handleChange} placeholder={"Enter Your Designation"} value={formData.designation} />
+                                                        <InputForm content={"Work Experience"} identifier={"cmpexperience"} formData={formData} onchangeData={handleChange} placeholder={"Experience in this Company"} value={formData.cmpexperience} />
+                                                    </>
 
-                                                // <div>
-                                                //     <div className='pt-4'>
-                                                //         <input className="text-light border border-0 border-bottom bg-transparent col-12" type='text' name='clgproject' id='clgproject' value={formData.clgproject} onChange={handleChange} placeholder='Enter Your College Project Name' required />
-                                                //         <div id="preferedLocation" className=" form-text pb-3 text-light">College Main Project</div>
-                                                //     </div>
-                                                //     <div className='pt-4'>
-                                                //         <input className="text-light border border-0 border-bottom bg-transparent col-12" type='text' name='projectskills' id='projectskills' value={formData.projectskills} onChange={handleChange} placeholder='Enter Learned Skills' required />
-                                                //         <div id="preferedLocation" className=" form-text pb-3 text-light">Skills Learned from the Project</div>
-                                                //     </div>
-                                                //     <div className='pt-4'>
-                                                //         <input className="text-light border border-0 border-bottom bg-transparent col-12" type='text' name='projecturl' id='projecturl' value={formData.projecturl} onChange={handleChange} placeholder='Enter Your Project URL' required />
-                                                //         <div id="preferedLocation" className=" form-text pb-3 text-light">Project Link If any</div>
-                                                //     </div>
-                                                //     <div className='pt-4'>
-                                                //         <input className="text-light border border-0 border-bottom bg-transparent col-12" type='text' name='otherskills' id='otherskills' value={formData.otherskills} onChange={handleChange} placeholder='Enter Other Skills You Have' required />
-                                                //         <div id="preferedLocation" className=" form-text pb-3 text-light">Other Skills Learned in College</div>
-                                                //     </div>
-                                                // </div>
-                                            )
-                                        }
-
-                                        {stage === 4 &&
-                                            (experience === 2 &&
-                                            <Experience formData={formData} handleChange={handleChange} name={"Company"} />
-                                            )
+                                                    }
+                                                    <InputForm content={"Previous Projects"} identifier={"projects"} formData={formData} onchangeData={handleChange} placeholder={"Enter Your Project Name"} value={formData.projects} />
+                                                    <InputForm content={"Skills Learned in Project"} identifier={"projectskills"} formData={formData} onchangeData={handleChange} placeholder={"Enter Skills Learned from Project"} value={formData.projectskills} />
+                                                    <InputForm content={"Project URL if any ? "} identifier={"projecturl"} formData={formData} onchangeData={handleChange} placeholder={"Enter Project URL"} value={formData.projecturl} />
+                                                    <InputForm content={"Any Other Skills"} identifier={"otherskills"} formData={formData} onchangeData={handleChange} placeholder={"Enter Additional Skills"} value={formData.otherskills} />
+                                            </div>
                                         }
 
 
                                         {/* 3 */}
                                        {stage === 5 &&
                                             <div className='p-3'>
-                                                <div className='pt-4'>
-                                                    {/* <p className='text-start pt-2'>LinkedIn URL : </p> */}
-                                                    <input className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-11" type='text' name='linkedin' id='linkedin' value={formData.linkedin} onChange={handleChange} placeholder='Enter Your LinkedIn URL' required />
-                                                    <div id="preferedLocation" className=" form-text pb-3 text-light">LinkedIn URL</div>
-                                                </div>
-
-                                                <div className='pt-4'>
-                                                    {/* <p className='text-start pt-2'>Personal Website URL : </p> */}
-                                                    <input className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-11" type='text' name='personalsite' id='personalsite' value={formData.personalsite} onChange={handleChange} placeholder='Enter Your Personal Site URL' required />
-                                                    <div id="preferedLocation" className=" form-text pb-3 text-light">Personal Site URL</div>
-                                                </div>
-
-                                                <div className='pt-4'>
-                                                    {/* <p className='text-start pt-2'>Other Social Media URL : </p> */}
-                                                    <input className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-11" type='text' name='socialmedia' id='socialmedia' value={formData.socialmedia} onChange={handleChange} placeholder='Enter Your Socialmedia URL' />
-                                                    <div id="preferedLocation" className=" form-text pb-3 text-light">Socialmedia URL</div>
-                                                </div>
+                                                     
+                                                <InputForm content={"Linked In URL"} identifier={"linkedin"} formData={formData} onchangeData={handleChange} placeholder={"Enter Your Linked In URL"} value={formData.linkedin} />
+                                                
+                                                <InputForm content={"Personal Site URL"} identifier={"personalsite"} formData={formData} onchangeData={handleChange} placeholder={"Enter Personal Site URL"} value={formData.personalsite} />
+                                                
+                                                <InputForm content={"Social Media URL"} identifier={"socialmedia"} formData={formData} onchangeData={handleChange} placeholder={"Enter Your Current Location"} value={formData.socialmedia} />
 
                                             </div>
                                         }
@@ -326,20 +286,26 @@ function FormData() {
                                         {/* 4 */}
                                         {stage === 6 && 
                                             <div className='p-3'>
-                                                <div className='pt-4'>
-                                                    {/* <p className='text-start pt-2'>Language Known : </p> */}
-                                                    <input className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-11" type='text' name='language' id='language' value={formData.language} onChange={handleChange} placeholder='Prefered Language for Commuication ' required />
-                                                    <div id="preferedLocation" className=" form-text pb-3 text-light">Language Known</div>
-                                                </div>
+
+                                                <InputForm content={"Language Known"} identifier={"language"} formData={formData} onchangeData={handleChange} placeholder={"Prefered Language for Communication"} value={formData.language} />
+
+
+                                                <input
+                                                    className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-11 btn"
+                                                    type='file'
+                                                    name='document'
+                                                    id='document'
+                                                    accept='.doc, .pdf, .docx'
+                                                    onChange={(event) => handleChange(event)} // Add onChange event handler
+                                                    required
+                                                />
+                                                <input class="form-control" 
+                                                type='file'
+                                                name='document' id='document' 
+                                                accept='.doc, .pdf, .docx' />
+
 
                                                 <div className='pt-4'>
-                                                    {/* <p className='text-start pt-2'> Attach Document <i className="bi bi-paperclip"></i> : </p> */}
-                                                    <input className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-11 btn" type='file' name='document' id='document' placeholder='' accept='.doc, .pdf, .docx' required />
-                                                    <div id="preferedLocation" className=" form-text pb-3 text-light">Attach Resume  <i className="bi bi-paperclip"></i> </div>
-                                                </div>
-
-                                                <div className='pt-4'>
-                                                    {/* <p className='text-start pt-2'>How Fun You Are ? : </p> */}
                                                     <textarea id="moreinfo" className='text-light border border-1 border-bottom bg-transparent col-12 col-lg-11' name="moreinfo" rows="4" cols="25" value={formData.moreinfo} onChange={handleChange} placeholder='How Fun You Are ? ' required />
                                                     <div id="preferedLocation" className=" form-text pb-3 text-light">Tell About Yourself...</div>
                                                 </div>
@@ -357,7 +323,6 @@ function FormData() {
                                         </div>
                                     :
                                     <div className='text-center pt-3'>
-                                        {/* <button type='submit' className='btn btn-warning px-4' >Submit</button> */}
                                         <button type='submit' className='btn btn-warning px-4' >Submit</button>
                                     </div>
                                     }
@@ -373,93 +338,3 @@ function FormData() {
 }
 
 export default FormData;
-
-//  <form action="" method="">
-//  <select name="theItems" onchange="otherSelect()">
-//  <option value="item1">Item One</option>
-//  <option value="item2">Item Two</option>
-//  <option value="item3">Item Three</option>
-//  <option value="other">Other</option> 
-
-//  </select>
- 
-//  <div id="otherBox" style="visibility: hidden;">
-//  Describe: <input name="otherField" type="text" /> 
-//  </div>
-//  </form>
- 
-//  <script type="text/javascript">
-//  function otherSelect() {
-//  var other = document.getElementById("otherBox");
-//  var pick = document.forms[0].theItems.options[document.forms[0].theItems.selectedIndex].value;
-//  if ( pick == "other" || pick == "item2" ) { other.style.visibility = "visible"; }
-//  else { other.style.visibility = "hidden"; }
-//  }
-//  </script>
-
-
-// const [inputFields, setInputFields] = useState([{
-//     fullName: '',
-// }]);
-
-// const addInputField = () => {
-//     setInputFields([...inputFields, {
-//         fullName: '',
-//     }])
-
-// }
-// const removeInputFields = (index) => {
-//     const rows = [...inputFields];
-//     rows.splice(index, 1);
-//     setInputFields(rows);
-// }
-// const handleChange = (index, evnt) => {
-
-//     const { name, value } = evnt.target;
-//     const list = [...inputFields];
-//     list[index][name] = value;
-//     setInputFields(list);
-
-
-
-// }
-// return (
-
-//     <div className="container">
-//         <div className="row">
-//             <div className="col-sm-8">
-//                 {
-//                     inputFields.map((data, index) => {
-//                         const { fullName, emailAddress, salary } = data;
-//                         return (
-//                             <div className="row my-3" key={index}>
-//                                 <div className="col">
-//                                     <div className="form-group">
-//                                         <input type="text" onChange={(evnt) => handleChange(index, evnt)} value={fullName} name="fullName" className="form-control" placeholder="Full Name" />
-//                                     </div>
-//                                 </div>
-
-//                                 <div className="col">
-
-
-//                                     {(inputFields.length !== 1) ? <button className="btn btn-outline-danger" onClick={removeInputFields}>x</button> : ''}
-
-
-//                                 </div>
-//                             </div>
-//                         )
-//                     })
-//                 }
-
-//                 <div className="row">
-//                     <div className="col-sm-12">
-//                         <button className="btn btn-outline-success " onClick={addInputField}>Add New</button>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//         <div className="col-sm-4">
-//         </div>
-//     </div>
-
-// )

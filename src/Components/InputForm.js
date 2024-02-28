@@ -2,12 +2,13 @@ import React from "react";
 
 function InputForm({...props}){
 
-    console.log(props);
+    // console.log(props);
 
     // const [content, identifier, formData, onchangeData, placeholder] = props
+    // const formData = props.formData;
+    
     const content = props.content;
     const identifier = props.identifier;
-    const formData = props.formData;
     const onchangeData = props.onchangeData;
     const placeholder = props.placeholder;
     const value = props.value;

@@ -9,15 +9,23 @@ function Profile()
     const [formData, setFormData] = useState({
         username: '',
         email: '',
-        phonenumber: '',
+        mobilenumber: '',
         currentlocation: '',
         preferedlocation: '',
         qualification: '',
+        yearofpassing: '',
         experience: '',
+        orgname: '',
+        cmpexperience: '',
+        projects: '',
+        projectskills: '',
+        projecturl: '',
+        otherskills: '',
         linkedin: '',
         personalsite: '',
         socialmedia: '',
         language: '',
+        document: '',
         moreinfo: ''
     });
 
@@ -45,7 +53,15 @@ function Profile()
                 personalsite: res.data.personalsite,
                 socialmedia: res.data.socialmedia,
                 language: res.data.language,
-                moreinfo: res.data.moreinfo
+                moreinfo: res.data.moreinfo,
+                yearofpassing: res.data.yearofpassing,
+                orgname: res.data.orgname,
+                cmpexperience: res.data.cmpexperience,
+                projects: res.data.projects,
+                projectskills: res.data.projectskills,
+                projecturl: res.data.projecturl,
+                otherskills: res.data.otherskills,
+                // document: res.data.,
             }));
 
 
@@ -87,10 +103,20 @@ function Profile()
                                                                     <b>Qualification :</b> {formData.qualification}
                                                                 </div>
                                                                 <div className="p-2">
-                                                                    <b>About :</b> {formData.moreinfo}
+                                                                    <b>Last Experience in :</b> {formData.orgname}
                                                                 </div>
                                                                 <div className="p-2">
-                                                                    <b>Language Known :</b>{formData.language}
+                                                                    <b>Completed In :</b> {formData.yearofpassing}
+                                                                </div>
+
+                                                                {formData.cmpexperience && 
+                                                                    <div className="p-2">
+                                                                        <b>Work Experience : </b>{formData.cmpexperience}
+                                                                    </div>
+                                                                }
+
+                                                                <div className="p-2">
+                                                                    <b>Communicated In : </b>{formData.language}
                                                                 </div>
                                                                 {/* <div className="p-2">
                                                                     <b>Additional Info :</b> {formData.about}
@@ -100,7 +126,7 @@ function Profile()
                                                                 </div>
                                                                 <div>
                                                                     <div className="p-2">
-                                                                        <b>Social Media URL :</b><p className="col-6">{formData.socialmedia}</p>
+                                                                        <b>Social Media URL :</b>{formData.socialmedia}
                                                                     </div>
                                                                     <div className="p-2">
                                                                         <b>Personalsite URL :</b>{formData.personalsite}
@@ -111,21 +137,34 @@ function Profile()
                                                             <div className="col-6 bg-light text-dark ps-2">
 
                                                                 <div className="text-start p-2 pt-3">
-                                                                <div>
-                                                                    <b>Experience :</b> {formData.experience}
-                                                                </div>
-                                                                    <div className="pt-4">
+                                                                    <div className="p-2">
+                                                                        <b>Experience :</b> {formData.experience}
+                                                                    </div>
+                                                                    <div className="p-2">
                                                                         <b>Email ID :</b> {formData.email}
                                                                     </div>
-                                                                    <div>
+                                                                    <div className="p-2">
                                                                         <b>Phonenumber : </b> {formData.phonenumber}
                                                                     </div>
-                                                                    <div className="pt-4">
+                                                                    <div className="p-2">
                                                                         <b>Current Location :</b> {formData.currentlocation}
                                                                     </div>
-                                                                    <div c>
+                                                                    <div className="p-2">
                                                                         <b>Prefered Location :</b> {formData.preferedlocation}
                                                                     </div>          
+
+                                                                    <div className="p-2">
+                                                                        <b>Projects Done :</b> {formData.projects}
+                                                                    </div>
+                                                                    <div className="p-2">
+                                                                        <b>Skills Learned from Project:</b> {formData.projectskills}
+                                                                    </div>
+                                                                    <div className="p-2">
+                                                                        <b>Project URL :</b> {formData.projecturl}
+                                                                    </div>
+                                                                    <div className="p-2">
+                                                                        <b>Additional Skills :</b> {formData.otherskills}
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>

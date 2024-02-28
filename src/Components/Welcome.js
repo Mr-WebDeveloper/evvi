@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Header from "./Header";
 import SidePanel from "./SidePanel";
@@ -15,7 +15,7 @@ function Welcome()
     //     setRegister(true);
     // }
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         username: '',
@@ -95,22 +95,20 @@ function Welcome()
                         </div>
 
                         <div className="p-5">
-                            {formData.username ? 
                                 <h2 className="px-4 py-2 text-dark rounded-start-pill text-center">Welcome {formData.username} !</h2>
-                                :
-                                <h2 className="px-4 py-2 text-dark rounded-start-pill text-center">Welcome buddy !</h2>
-                                
-                            }
+                                <div>
+                                <h4 className="px-4 py-2 text-secondary rounded-start-pill text-center">Find Your Right Company Here...!</h4>
+                                </div>
                         </div>
 
-                        {formData.username ?
+                        {/* {formData.username ?
                             <></>
                             :
                             <div className="p-5 text-center">
                                 <button className="btn btn-warning px-5 mx-5 fs-2 rounded-5"><i className="bi bi-journal-bookmark"></i> Fill Your Details </button>
                             </div>
                         }
-                        
+                         */}
 
 
                         <div className="pb-5"></div>

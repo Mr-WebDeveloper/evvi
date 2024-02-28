@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import multer from 'multer';
+import nodemailer from 'nodemailer'
 import { MongoClient } from 'mongodb';
 import cors from 'cors';
 
@@ -27,7 +28,7 @@ const collection = database.collection('registerform');
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        callback(null, '../public/uploads');
+        callback(null, './uploads');
     },
     filename: function (req, file, callback) {
         callback(null, file.originalname);
@@ -35,6 +36,7 @@ var storage = multer.diskStorage({
 });  
 
 var uploads = multer({ storage: storage });  
+
 
 
 
@@ -53,16 +55,86 @@ app.get("/", async (req, res) => {
 app.post("/register", uploads.single('document'), async (req, res) => {
     console.log("/Register");
 
+    try {
+        console.log("/...file");
 
+        console.log(req.file);
+        const { path } = req.file;
+
+        res.status(300).send("File uploaded successfully.");
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Internal Server Error");
+    }
+
+
+    // if (req.file) {
+    //     console.log("File details:", req.file);
+    //     // You can access specific details like req.file.filename, req.file.size, req.file.mimetype, etc.
+    // } else {
+    //     console.log("No file uploaded");
+    // }
+    
     const { username, email, mobilenumber, qualification, yearofpassing, currentlocation,
-         preferedlocation, experience, orgname, projects, projectskills, projecturl, 
-         otherskills, linkedin, personalsite, socialmedia, language, moreinfo } = req.body;
+        preferedlocation, experience, orgname, designation, cmpexperience, projects, projectskills, projecturl, 
+        otherskills, linkedin, personalsite, socialmedia, language, moreinfo } = req.body;
+       
+        console.log("No file uploaded", req.body);
+        // console.log(req);
+        
+    const mailOptions = {
+        from: "mudalamrajarajacholan1@gmail.com",   
+        to: "mudalamrajarajacholan1@gmail.com",
+        subject: "New User Register in Evvi Elect",
+        text: `
+            User Name: ${username},
+            Email ID: ${email},
+            Mobile number: ${mobilenumber},
+            Qualification: ${qualification},
+            Year Of Passing: ${yearofpassing},
+            Current Location: ${currentlocation},
+            Preferred Location: ${preferedlocation},
+            Experience: ${experience},
+            Last Experience In: ${orgname},
+            Designation: ${designation},
+            Work Experience: ${cmpexperience},
+            Completed Projects: ${projects},
+            Project Skills: ${projectskills},
+            Project URL: ${projecturl},
+            Additional Skills: ${otherskills}
+            LinkedIn URL: ${linkedin}
+            Personal Website: ${personalsite}
+            Socialmedia URL: ${socialmedia}
+            Communication Language: ${language}
+            Additional Information: ${moreinfo}
+            `,
+
+        // attachments: [{
+        //     filename: fileName,
+        //     path: path,
+        //     contentType: 'application'
+        // }],
+    };
+
+    const transporter = nodemailer.createTransport({
+        service: "Gmail",
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+            user: "mudalamrajarajacholan1@gmail.com",
+            pass: "zfab jgqk triv yhud",
+        },
+    });
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error("Error sending email: ", error);
+        } else {
+            console.log("Email sent: ", info.response);
+        }
+    });
+
     
-    // const { path } = req.file;
-    console.log(req.file);
-    // console.log(path);
-    
-    // console.log(req.body);
     try {
         console.log("register2");
         const result = await collection.updateOne(
@@ -78,6 +150,8 @@ app.post("/register", uploads.single('document'), async (req, res) => {
                     yearofpassing,
                     experience,
                     orgname,
+                    designation,
+                    cmpexperience,
                     projects,
                     projectskills,
                     projecturl,
@@ -87,8 +161,8 @@ app.post("/register", uploads.single('document'), async (req, res) => {
                     socialmedia,
                     language,
                     // document,
-                    moreinfo
-                    // path,
+                    moreinfo,
+                    path
                 }
             });
 

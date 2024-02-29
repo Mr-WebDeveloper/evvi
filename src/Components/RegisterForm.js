@@ -290,7 +290,7 @@ function FormData() {
                                                 <InputForm content={"Language Known"} identifier={"language"} formData={formData} onchangeData={handleChange} placeholder={"Prefered Language for Communication"} value={formData.language} />
 
 
-                                                <input
+                                                {/* <input
                                                     className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-11 btn"
                                                     type='file'
                                                     name='document'
@@ -298,12 +298,8 @@ function FormData() {
                                                     accept='.doc, .pdf, .docx'
                                                     onChange={(event) => handleChange(event)} // Add onChange event handler
                                                     required
-                                                />
-                                                <input class="form-control" 
-                                                type='file'
-                                                name='document' id='document' 
-                                                accept='.doc, .pdf, .docx' />
-
+                                                /> */}
+                                               
 
                                                 <div className='pt-4'>
                                                     <textarea id="moreinfo" className='text-light border border-1 border-bottom bg-transparent col-12 col-lg-11' name="moreinfo" rows="4" cols="25" value={formData.moreinfo} onChange={handleChange} placeholder='How Fun You Are ? ' required />

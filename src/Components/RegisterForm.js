@@ -30,11 +30,13 @@ function FormData() {
         linkedin: '',
         personalsite: '',
         socialmedia: '',
-        language: '',
         document: '',
+        language: '',
         moreinfo: ''
     });
     const navigate = useNavigate();
+
+
     // const [file, setFile] = useState();
 
 
@@ -110,11 +112,11 @@ function FormData() {
         
         console.log("Handle Submit");
         console.log("Axios");
-        console.log(formData.document);
         // output undefined
         console.log("file details");
+        console.log(formData);
 
-            axios.post("http://localhost:5000/register", formData).then((res) => {
+            axios.post("http://localhost:8000/register", formData).then((res) => {
                 console.log(res);
                 if(res.status === 201) {
                     navigate('/welcome', {
@@ -128,51 +130,6 @@ function FormData() {
                 return
             });
 
-        // const serviceID = 'service_80n007d';
-        // const templateID = 'template_ufmta6x';
-        // const publicKey = 'iHCnK6GIVMJY2QBIC';
-
-        // const templateParams = {
-        //     from_name: formData.username,
-        //     from_email: formData.email,
-        //     to_name: 'mudalamrajarajacholan1@gmail.com',
-
-        //     // name: formData.username,
-        //     // email: formData.email,
-        //     name: formData.username,
-        //     email: formData.email,
-        //     mobilenumber: formData.mobilenumber,
-        //     currentlocation: formData.currentlocation,
-        //     preferedlocation: formData.preferedlocation,
-        //     qualification: formData.qualification,
-        //     yearofpassing: formData.yearofpassing,
-        //     experience: formData.experience,
-        //     orgname: formData.orgname,
-        //     cmpexperience: formData.cmpexperience,
-        //     projects: formData.projects,
-        //     projectskills: formData.projectskills,
-        //     projecturl: formData.projecturl,
-        //     otherskills: formData.otherskills,
-        //     linkedin: formData.linkedin,
-        //     personalsite: formData.personalsite,
-        //     socialmedia: formData.socialmedia,
-        //     language: formData.language,
-        //     document: formData.document,
-        //     moreinfo: formData.moreinfo
-
-        // };
-
-        // // const form = document.getElementById("userForm");
-
-            
-
-        // await emailjs.sendForm(serviceID, templateID, templateParams)
-        //     .then((response) => {
-        //         console.log("email send successfully", response);
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     })
 
     }
 
@@ -290,15 +247,16 @@ function FormData() {
                                                 <InputForm content={"Language Known"} identifier={"language"} formData={formData} onchangeData={handleChange} placeholder={"Prefered Language for Communication"} value={formData.language} />
 
 
-                                                {/* <input
+                                                <input
                                                     className="text-light border border-0 border-bottom bg-transparent col-12 col-lg-11 btn"
                                                     type='file'
                                                     name='document'
                                                     id='document'
                                                     accept='.doc, .pdf, .docx'
+                                                    value={formData.document}
                                                     onChange={(event) => handleChange(event)} // Add onChange event handler
                                                     required
-                                                /> */}
+                                                />
                                                
 
                                                 <div className='pt-4'>

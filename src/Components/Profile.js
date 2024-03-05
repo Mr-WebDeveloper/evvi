@@ -35,7 +35,7 @@ function Profile()
 
     useEffect(() => {
 
-        axios.post("http://localhost:5000/welcome", data).then((res) => {
+        axios.post("http://localhost:8000/welcome", data).then((res) => {
             console.log(res.data);
             //    setFormData.username = res.data.username;
             //    console.log(res.data.username);

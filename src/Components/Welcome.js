@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Header from "./Header";
 import SidePanel from "./SidePanel";
+// import Panel from "./Panel";
 
 // import RegisterForm from "./RegisterForm"
 
@@ -38,7 +39,7 @@ function Welcome()
 
     useEffect(() => {
 
-         axios.post("http://localhost:5000/welcome", data).then((res) => {
+         axios.post("http://localhost:8000/welcome", data).then((res) => {
            console.log(res.data); 
         //    setFormData.username = res.data.username;
         //    console.log(res.data.username);
@@ -94,12 +95,51 @@ function Welcome()
                             </h2>
                         </div>
 
-                        <div className="p-5">
+                        <div className="p-3">
                                 <h2 className="px-4 py-2 text-dark rounded-start-pill text-center">Welcome {formData.username} !</h2>
                                 <div>
-                                <h4 className="px-4 py-2 text-secondary rounded-start-pill text-center">Find Your Right Company Here...!</h4>
+                                <h4 className="px-4 pt-2 text-secondary rounded-start-pill text-center">Find Your Right Company Here...!</h4>
                                 </div>
                         </div>
+
+
+                        <div className="d-flex justify-content-center ">
+                            <div className="p-4 shadow rounded-4 col-10 d-flex justify-content-center">
+
+                                <div className="pe-3 col-3">
+                                    <div className="bg-info border-end border-bottom border-5 border-light shadow p-3 rounded-4 px-5">
+                                        <div>
+                                            <p className="text-center">Available Jobs <i class="bi bi-suitcase-lg"></i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="pe-3 col-3">
+                                    <div className="bg-warning border-end border-bottom border-5 border-light shadow p-3 rounded-4 px-5">
+                                        <div>
+                                            <p className="text-center">Applied Jobs <i class="bi bi-suitcase-lg"></i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="pe-3 col-3">
+                                    <div className="bg-success border-end border-bottom border-5 border-light shadow p-3 rounded-4 px-5">
+                                        <div>
+                                            <p className="text-center">Sortlisted <i class="bi bi-suitcase-lg"></i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="pe-3 col-3">
+                                    <div className="bg-danger border-end border-bottom border-5 border-light shadow p-3 rounded-4 px-5">
+                                        <div>
+                                            <p className="text-center">Rejected <i class="bi bi-suitcase-lg"></i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/* <div className="d-flex justify-content-center">
+                            <Panel />       
+                        </div> */}
+
 
                         {/* {formData.username ?
                             <></>

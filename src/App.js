@@ -13,6 +13,8 @@ import Footer from "./Components/Footer";
 import Signup from "./Components/Signup";
 import Welcome from "./Components/Welcome";
 import Profile from "./Components/Profile";
+import Panel from "./Components/Panel";
+import Notification from "./Components/Notification";
 
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
           <Route path="/welcome" element={<PrivateRoute Component={Welcome} />} />
           <Route path="/profile" element={<PrivateRoute Component={Profile} />} />
           <Route path="/registerform" element={<PrivateRoute Component={RegisterForm} />} />
+          <Route path="/jobs" element={<PrivateRoute Component={Panel} />} />
+          <Route path="/notification" element={<PrivateRoute Component={Notification} />} />
         </Routes>
       </BrowserRouter>
       <Footer />

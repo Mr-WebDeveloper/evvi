@@ -46,7 +46,7 @@ function Signup() {
         if (formData.email !== "" && formData.password !== "" && formData.mobilenumber !== "" && formData.password === formData.confirmpassword)
         {
             console.log("Signup");
-            await axios.post("http://localhost:5000/signup", formData)
+            await axios.post("http://localhost:8000/signup", formData)
                 .then((res) => {
                     if(res.status === 201)
                     {

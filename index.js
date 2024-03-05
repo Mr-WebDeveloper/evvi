@@ -8,10 +8,21 @@ import cors from 'cors';
 const client = new MongoClient('mongodb://localhost:27017');
 
 const app = express();
-const port = 5000;
+const port = 8000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+
+var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, 'uploads/');
+    },
+    filename: function (req, file, callback) {
+        callback(null, file.originalname);
+    }
+});  
+
+var uploads = multer({ storage: storage });  
 
 app.use(cors());
 
@@ -26,16 +37,6 @@ client.connect()
 const database = client.db('Intern');
 const collection = database.collection('registerform');
 
-var storage = multer.diskStorage({
-    destination: function (req, file, callback) {
-        callback(null, './uploads');
-    },
-    filename: function (req, file, callback) {
-        callback(null, file.originalname);
-    }
-});  
-
-var uploads = multer({ storage: storage });  
 
 
 
@@ -53,34 +54,13 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/register", uploads.single('document'), async (req, res) => {
+
+    // console.log(req.file['path']);
     console.log("/Register");
 
-    try {
-        console.log("/...file");
-
-        console.log(req.file);
-        const { path } = req.file;
-
-        res.status(300).send("File uploaded successfully.");
-    } catch (error) {
-        console.error("Error:", error);
-        res.status(500).send("Internal Server Error");
-    }
-
-
-    // if (req.file) {
-    //     console.log("File details:", req.file);
-    //     // You can access specific details like req.file.filename, req.file.size, req.file.mimetype, etc.
-    // } else {
-    //     console.log("No file uploaded");
-    // }
-    
     const { username, email, mobilenumber, qualification, yearofpassing, currentlocation,
         preferedlocation, experience, orgname, designation, cmpexperience, projects, projectskills, projecturl, 
         otherskills, linkedin, personalsite, socialmedia, language, moreinfo } = req.body;
-       
-        console.log("No file uploaded", req.body);
-        // console.log(req);
         
     const mailOptions = {
         from: "mudalamrajarajacholan1@gmail.com",   
@@ -160,9 +140,7 @@ app.post("/register", uploads.single('document'), async (req, res) => {
                     personalsite,
                     socialmedia,
                     language,
-                    // document,
-                    moreinfo,
-                    path
+                    moreinfo
                 }
             });
 
@@ -170,13 +148,12 @@ app.post("/register", uploads.single('document'), async (req, res) => {
             console.log("email found");
 
             console.log("Data...Store");
-            return res.status(201).send({ message: "User Found" });
-            // res.redirect(`http://localhost:3000/welcome`);
-            // console.log("Finally....");
+            res.status(201).send({ userEmail: email });
+          
         }
         else {
             console.log("email not foud");
-            return res.status(404).send({ message: "User not Found" });
+            return res.status(404);
             // res.redirect("http://localhost:3000/");
         }
         
@@ -267,6 +244,24 @@ app.post('/welcome', async (req, res) => {
     }
 
 });
+
+app.post('/panel', async (req, res) => {
+    console.log("Panle..");
+
+    console.log(req.body);
+
+    let { email } = req.body;
+
+    try {
+        const result = await collection.findOne({ email });
+        // const {username, mobilenumber} = result;
+
+        console.log(result);
+        res.json(result);
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}.`);
